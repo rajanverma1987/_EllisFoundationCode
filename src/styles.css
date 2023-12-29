@@ -1,0 +1,23 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: "BeVietnamPro-Black", sans-serif;
+  font-size: 12px;
+  word-spacing: 2px;
+  color: #00263e;
+  border: #00263E;
+}
+
+/* styles.css */
+
+@font-face {
+  font-family: "BeVietnamPro-Black"; /* Use a meaningful name */
+  src: url("./assets/fonts/BeVietnamPro-Regular.ttf") format("truetype"); /* Adjust the path and format based on your font file */
+  font-weight: normal;
+  font-style: normal;
+}

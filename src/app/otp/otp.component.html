@@ -1,0 +1,22 @@
+<!-- src/app/otp/otp.component.html -->
+<div class="big-container">
+  <div class="header">
+    <div class="light-blue-bg"></div>
+    <div class="dark-blue-bg"></div>
+    <img src="../../assets/images/The-Ellis-Foundation-2020.png" alt="Logo">
+
+  </div>
+  <div class="container">
+    <h2>Enter OTP</h2>
+    <form #otpForm="ngForm" (ngSubmit)="context == 'otp' ? verifyOTP() : verifyLogin()">
+      <div class="form-group">
+        <label for="otp">OTP</label>
+        <input type="text" id="otp" name="otp" [(ngModel)]="otp" required>
+      </div>
+      <button type="submit">
+        {{ context == 'otp' ? 'Verify OTP' : 'Verify Login' }}
+      </button>      
+    </form>
+    <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+  </div>  
+</div>

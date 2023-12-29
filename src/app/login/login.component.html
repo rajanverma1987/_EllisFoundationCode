@@ -1,0 +1,24 @@
+<!-- src/app/login/login.component.html -->
+<div class="big-container">
+  <div class="header">
+    <div class="light-blue-bg"></div>
+    <div class="dark-blue-bg"></div>
+  </div>
+  <img src="../../assets/images/The-Ellis-Foundation-2020.png" alt="Logo">
+  <div class="container">
+    <h2>Login</h2>
+    <form (ngSubmit)="login()" #loginForm="ngForm">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" [(ngModel)]="email" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" [(ngModel)]="password" required>
+      </div>
+      <button type="submit">Login</button>
+    </form>
+    <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+    
+  </div>
+</div>

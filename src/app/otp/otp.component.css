@@ -1,0 +1,107 @@
+.big-container {
+  text-align: center;
+}
+
+/* src/app/login/login.component.css */
+
+.header {
+  position: relative;
+  color: white;
+  font-size: 20px;
+  height: 10vh;
+}
+
+.light-blue-bg,
+.dark-blue-bg {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.light-blue-bg {
+  background-color: #8FC6E1;
+  
+  /* clip-path: polygon(100% 0, 100% 100%, 0 100%); */
+}
+
+.dark-blue-bg {
+  background-color: #075b85;
+  clip-path: polygon(0 0, 50% 0, 0 100%);
+}/* src/app/otp/otp.component.css */
+
+
+
+
+.container {
+  max-width: 500px;
+    margin: auto;
+    margin-top: 12.5%;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+  }
+  
+  h2 {
+    text-align: center;
+    color: #075b85;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    display: block;
+    font-size: 16px;
+    color: #000000;
+    margin-bottom: 8px;
+  }
+  
+  input {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+  }
+  
+  input:focus {
+    border-color: #4caf50;
+  }
+  
+  button {
+    width: 40%;
+    padding: 10px;
+    font-size: 16px;
+    background-color: #075b85;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  button:hover {
+    background-color: #357a9c;
+    color: #ffffff;
+  }
+  
+  .error-message {
+    color: #d9534f;
+    margin-top: 10px;
+    text-align: center;
+  }
+  
+
+  img {
+    width: 300px; 
+    height: auto; 
+    margin-top:6.55%;
+  }
+  

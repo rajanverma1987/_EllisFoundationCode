@@ -1,0 +1,455 @@
+.big-container {
+  max-width: 100vw !important;
+  text-align: center;
+}
+.header {
+  position: relative;
+  color: #fff;
+  /* font-size: 15px; */
+  height: 7vh;
+}
+.light-blue-bg,
+.dark-blue-bg {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.light-blue-bg {
+  background-color: #8fc6e1;
+}
+.dark-blue-bg {
+  background-color: #075b85;
+  clip-path: polygon(0 0, 50% 0, 0 100%);
+}
+h2 {
+  text-align: center;
+  color: #075b85;
+}
+tbody {
+  max-height: 300px;
+}
+th,
+td {
+  padding: 0px;
+  border: 1px solid #4c4c4c;
+  min-width: 89px;
+  width: auto;
+}
+.top-text {
+  padding: 5px;
+  font-size: 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  transition: border-color 0.3s;
+}
+.top-text:focus {
+  border-color: #4caf50;
+  outline: none;
+}
+::placeholder {
+  color: #999;
+  font-style: italic;
+}
+.top-text:-ms-input-placeholder {
+  color: #999;
+  font-style: italic;
+}
+thead th[colspan="10"] {
+  background-color: #2ecc71;
+}
+tbody tr:nth-child(odd) {
+  background-color: #fff;
+}
+/* tbody tr:hover {
+  background-color: #bfe3f5;
+} */
+.welcome-email {
+  font-size: 14px;
+  color: #075b85;
+  display: inline-block;
+  font-weight: 600;
+  margin-top: 1.3%;
+  margin-left: -150px;
+}
+
+input[type="number"]::-webkit-inner-spin-button{
+display: none;
+}
+.logout-button {
+  float: right;
+  margin-top: 0.5%;
+  margin-right: 5.1%;
+  font-size: 13px;
+  text-transform: capitalize;
+  cursor: pointer;
+  position: relative;
+  background-color: transparent;
+  outline: none;
+  overflow: hidden;
+  transition: color .3s ease-in-out;
+  border-radius: 3px;
+}
+.logout-button-text {
+  color: black;
+  padding: 7px 14px;
+  display: inline-block;
+  position: relative;
+  z-index: 6;
+  font-weight: bold;
+}
+.logout-button:hover .logout-button-text {
+  color: #075b85;
+}
+.logout-button::before,
+.logout-button::after {
+  content: "";
+  position: absolute;
+  background: white;
+  transition: transform 0.3s ease-in-out;
+}
+.logout-button::before {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  transform: scaleX(0);
+  transform-origin: 0 0;
+}
+.logout-button::after {
+  top: 0;
+  left: 0;
+  width: 2px;
+  height: 100%;
+  transform: scaleY(0);
+  transform-origin: 0 0;
+}
+.logout-button:hover::before {
+  transform: scaleX(1);
+  transform-origin: 100% 0;
+}
+.logout-button:hover::after {
+  transform: scaleY(1);
+  transform-origin: 0 100%;
+}
+.vertical {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+.editable-input {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  transition: border-color 0.3s;
+}
+.no-wrap {
+  white-space: nowrap;
+}
+.Save-button {
+  float: right;
+  margin-top: 1%;
+  margin-right: 5%;
+  font-size: 14px;
+  text-transform: capitalize;
+  cursor: pointer;
+  position: relative;
+  background-color: #075b85;
+  outline: none;
+  overflow: auto;
+  transition: color .3s ease-in-out;
+  border-radius: 3px;
+  width: 88px;
+}
+.save-button-text {
+  color: white;
+  display: inline-block;
+  position: relative;
+  z-index: 6;
+  font-weight: bold;
+}
+.Save-button:hover .save-button-text {
+  color: white;
+}
+.Save-button::before,
+.Save-button::after {
+  content: "";
+  position: absolute;
+  background: white;
+  transition: transform 0.3s ease-in-out;
+}
+.Save-button::before {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  transform: scaleX(0);
+  transform-origin: 0 0;
+}
+.Save-button::after {
+  top: 0;
+  left: 0;
+  width: 2px;
+  height: 100%;
+  transform: scaleY(0);
+  transform-origin: 0 0;
+}
+.Save-button:hover::before {
+  transform: scaleX(1);
+  transform-origin: 100% 0;
+}
+.Save-button:hover::after {
+  transform: scaleY(1);
+  transform-origin: 0 100%;
+}
+
+.pdf-download {
+  padding: 2px !important;
+  width: 10%;
+}
+.non-editing-box {
+  padding: 3px;
+  border: 1px solid #ddd;
+  transition: background-color 0.3s;
+  width: 90px;
+}
+.editing-box {
+  width: 90px;
+  height: 28px;
+  box-sizing: border-box;
+  border: 0px solid #3498db;
+  padding: 0 !important;
+  outline: none;
+  transition: border-color .3s,box-shadow .3s;
+  cursor: pointer;
+  text-align: center;
+  animation: _ngcontent-ng-c3301795948_fadeIn .3s ease;
+}
+.editing-box:focus {
+  border-color: #2980b9;
+  box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.sticky-header-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #d4e8f347;
+  border: 1px solid black;
+
+}
+
+.sticky-header-table th {
+  position: sticky;
+  top: 0;
+  background-color: #bfe3f5;
+  z-index: 1;
+  font-weight: 600;
+}
+.sticky-header-table td {
+  border: 1px solid #5e5e5e;
+  padding: 0px;
+  text-align: center;
+}
+.table-block {
+  max-height: 600px;
+  overflow-y: auto;
+  padding: 3px;
+  margin-top: 5px;
+  width: 99%;
+  font-size: 13px;
+}
+.table-block1 {
+  max-height: 80vh;
+  overflow-y: auto;
+  padding: 3px;
+
+}
+.sticky {
+  position: sticky;
+  top: -1;
+}
+.Files-button {
+  font-size: 12px;
+  text-transform:capitalize;
+  cursor: pointer;
+  position: relative;
+  background-color: #075b85;
+  outline: none;
+  overflow: hidden;
+  transition: color 0.3s ease-in-out;
+  border-radius: 3px;
+  text-align: center;
+}
+.Files-button-text {
+  color: white;
+  display: inline-block;
+  position: relative;
+  width: 100px;
+}
+.Files-button:hover,
+.Files-button-text {
+  color: white;
+}
+.Files-button::before,
+.Files-button::after {
+  content: "";
+  position: absolute;
+  background: white;
+  transition: transform 0.3s ease-in-out;
+}
+.Files-button::before {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  transform: scaleX(0);
+  transform-origin: 0 0;
+}
+.Files-button::after {
+  top: 0;
+  left: 0;
+  width: 2px;
+  height: 100%;
+  transform: scaleY(0);
+  transform-origin: 0 0;
+}
+.Files-button:hover::before {
+  transform: scaleX(1);
+  transform-origin: 50% 50%;
+}
+.Files-button:hover::after {
+  transform: scaleY(1);
+  transform-origin: 0 100%;
+}
+.border-top {
+  border-top: transparent;
+}
+.border-bottom {
+  border-bottom: transparent;
+}
+.checkbox-container {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+.checkbox-input {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.checkbox-custom {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+.checkbox-input:checked + .checkbox-custom {
+  background-color: #4caf50;
+  border-color: #4caf50;
+}
+.checkbox-input:checked + .checkbox-custom:before {
+  content: "\2713";
+  font-size: 14px;
+  color: #fff;
+  position: absolute;
+  top: 36%;
+  left: 49%;
+  transform: translate(-50%, -50%);
+  transition: color 0.3s;
+}
+img {
+  width: 200px;
+  height: auto;
+  margin-top: 3px;
+  margin-left: 5%; 
+  float: left;
+}
+.header-text{
+  background-color: transparent;
+  border: transparent;
+  color: #075b85;
+  font-size: 13px;
+  padding: 5px;
+  box-sizing: border-box;
+  transition: border-color .3s;
+  text-align: inherit;
+  font-weight: inherit;
+}
+.Moreinfo-button{
+  font-size: 10px;
+  text-transform:capitalize;
+  cursor: pointer;
+  position: relative;
+  background-color: white;
+  outline: none;
+  overflow: hidden;
+  transition: color 0.3s ease-in-out;
+  border-radius: 3px;
+  text-align: center;
+  width: 70px;
+}
+.Moreinfo-button-text{
+  color: #075b85;
+  display: inline-block;
+  position: relative;
+  width: 50px;
+}
+.comments{
+  min-width: 18rem !important;
+}
+
+.sliding-button {
+  position: fixed;
+    bottom: 76.5%;
+    right: 98%;
+    background-color: #075b85;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointe;
+    border-radius: 3px;
+    opacity: 0;
+    z-index: 1000;
+
+  /* CSS Animation */
+  animation: slideIn 0.5s ease-in-out forwards;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(100%);
+  }
+}
+
+
+
+input:focus{
+  border: 1px blue solid;
+  background-color:rgba(255, 255, 0, 0.2);
+}
