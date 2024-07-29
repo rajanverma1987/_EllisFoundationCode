@@ -11,6 +11,7 @@ body {
   word-spacing: 2px;
   color: #00263e;
   border: #00263E;
+  overflow-y: hidden;
 }
 
 /* styles.css */

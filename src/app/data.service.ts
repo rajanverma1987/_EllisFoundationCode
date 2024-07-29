@@ -7,7 +7,7 @@ import { Observable, from } from 'rxjs';
   providedIn: 'root'
 })
 export class DataService {
-  private apiUrl = 'Your_Api_Address/auth/getdata';
+  private apiUrl = 'https://ellisfoundationapi.infodatixhosting.com//auth/getdata';
 
   fetchData(): Observable<any> {
     const token = localStorage.getItem('access_token');

@@ -8,15 +8,16 @@
   <div class="user-info">
     <img src="../../assets/images/The-Ellis-Foundation-2020.png" alt="Logo">
     <p class="welcome-email">Welcome, {{ email }}</p>
-    <button (click)="saveAllChanges()" class="Save-button"><span class="save-button-text">Save</span></button>
+    <span class="buttonGroup">
+    <button (click)="exportToExcel()" class="Save-button">Export To Excel</button>
+    <button (click)="saveAllChanges()" class="Save-button">Save</button>
+  </span >
     <div *ngIf="showSuccessButton" class="sliding-button">
       <!-- Your success button content goes here -->
       Success!
     </div>
     
   </div>
-
-  
   <div class="table-block">
     <table class="sticky-header-table">    
       <thead>
@@ -43,9 +44,9 @@
     </thead>
   </table>
   </div>
-  <div class="table-block1">
+  <div class="table-block1" #tableToExport>
     <table class="sticky-header-table">
-        <thead style="font-size: 13px;">
+        <thead style="font-size: 13px;" class="stickyHeaders">
           <tr>
             <th colspan="2" style="border-bottom: transparent"></th>
             <th colspan="4" rowspan="2">Student Name</th>
@@ -76,9 +77,9 @@
             <th>Married Name</th>
             <th>First</th>
             <th>Middle</th>
-            <th style="background-color: #faefef;"><input class="header-text non-editing-box" type="text" [(ngModel)]="gradeYear" disabled></th>
+            <th style="background-color: #faefef;"><input class="header-text non-editing-box" type="text" [(ngModel)]="gradeYear" ></th>
             <th style="background-color: #faefef;"  >Cumulative</th>
-            <th style="background-color: #faefef;"><input class="header-text non-editing-box" type="text" [(ngModel)]="gradeYear" disabled></th>
+            <th style="background-color: #faefef;"><input class="header-text non-editing-box" type="text" [(ngModel)]="gradeYear" ></th>
             <th style="background-color: #faefef;"  >Cumulative</th>
             <!-- <th style="border-top: transparent">College Match Denied</th> -->
             <th style="border-top: transparent; min-width: 18rem;">Comments</th>
@@ -130,8 +131,8 @@
               <input type="number"  inputmode="numeric" [(ngModel)]="rowData.gpa.cumulative" class="editing-box" (keypress)="decimalfilterthree($event)" (blur)="exitEditing()"/>
             </td>
             <!-- <td class="non-editing-box">{{ rowData.collegeMatchDenied }}</td> -->
-            <td (click)="startEditing(i)" class="editing-box">
-              <input type="text" [(ngModel)]="rowData.commentsStatus" class="editing-box comments" (blur)="exitEditing()"/>
+            <td (click)="startEditing(i)" class="editing-box" >
+              <textarea  tabindex="-1" type="text" [ariaRowSpan]="3" [(ngModel)]="rowData.commentsStatus" class="editing-box comments" (blur)="exitEditing()" ></textarea>
             </td>
             <td (focus)="startEditing(i)" class="editing-box">
               <input type="number" pattern="[0-9]*" inputmode="numeric" [(ngModel)]="rowData.enrollment.code" class="editing-box" (blur)="exitEditing()" />
@@ -183,9 +184,17 @@
             </tr>
         </ng-container>
       </tbody>
-      
       </table>
-  </div>
+    </div>
+    <div class="notes">
+      <p >Instructions</p>
+        <ul>
+          <li>Please update ID# with your school ID if different than listed above.</li>
+          <li>If your College operates on a schedule other than Semesters; Please provide Hours and GPA for the most recently completed Term, and enrollment hours for the current or upcoming Term. Please provide in the Comments column any conversion to semester formulas.</li>
+          <li>Student Status: Use this field to report the Student's status. Codes: E - Enrolled (record number of Hours), G - Graduated (Sem-YR), T - Transferred (Last semester completed), S - Suspended, H - on Hold, or D - Dropped (Date).</li>
+          <li>Comments Section - Please note such things as Graduation Date if the student will graduate this year.</li>
+        </ul>
+    </div>
 
 </div>
 

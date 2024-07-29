@@ -41,7 +41,7 @@ export class OtpComponent {
       return;
     }
     const queryParams = `email=${encodeURIComponent(this.email)}&otp=${encodeURIComponent(this.otp)}`;
-    axios.post<any>(`Your_Api_Address/auth/confirm_otp?${queryParams}`, {})
+    axios.post<any>(`https://ellisfoundationapi.infodatixhosting.com//auth/confirm_otp?${queryParams}`, {})
       .then(response => {
         console.log('Server response:', response); // Log the response for debugging
         if (response.data && response.data == 'OTP accepted') {
@@ -63,7 +63,7 @@ export class OtpComponent {
     }
     const token = localStorage.getItem('access_token');
     const queryParams = `otp=${encodeURIComponent(this.otp)}`;
-    axios.post<any>(`Your_Api_Address/auth/token?${queryParams}`, {}   , 
+    axios.post<any>(`https://ellisfoundationapi.infodatixhosting.com//auth/token?${queryParams}`, {}   , 
     {
       headers: {
         Authorization: `${token}`,

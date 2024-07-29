@@ -37,7 +37,7 @@ export class PasswordSetupComponent {
     }
     const queryParams = `email=${encodeURIComponent(this.email)}&pwd=${encodeURIComponent(this.password)}`;
     console.log('Sending data to server:', queryParams);
-    axios.post<any>(`Your_Api_Address/auth/update_pass?${queryParams}`, {})
+    axios.post<any>(`https://ellisfoundationapi.infodatixhosting.com//auth/update_pass?${queryParams}`, {})
       .then(response => {
         console.log('Server response:', response.status); // Log the response for debugging
         if (response.status == 205) {

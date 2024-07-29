@@ -32,7 +32,7 @@ export class RegistrationComponent {
   }
   
   sendOTP() {
-    const url = `Your_Api_Address/auth/send_otp?email=${encodeURIComponent(this.email)}`;
+    const url = `https://ellisfoundationapi.infodatixhosting.com//auth/send_otp?email=${encodeURIComponent(this.email)}`;
     const data = {};
       this.http.post<any>(url, data).subscribe(
       response => {

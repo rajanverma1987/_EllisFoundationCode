@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ZipFilesService {
-  private apiUrl = 'Your_Api_Address'; // Adjust this URL accordingly
+  private apiUrl = 'https://ellisfoundationapi.infodatixhosting.com/'; // Adjust this URL accordingly
 
   constructor(private http: HttpClient) {}
 

@@ -7,7 +7,7 @@ import { map, tap } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class FilesService {
-  private apiUrl = 'Your_Api_Address/auth/getfile';
+  private apiUrl = 'https://ellisfoundationapi.infodatixhosting.com//auth/getfile';
 
   constructor(private http: HttpClient) {}
 
