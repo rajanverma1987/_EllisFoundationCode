@@ -106,6 +106,7 @@ export class HomeComponent implements OnInit {
   startEditing(index: number): void {
     this.editingRowIndex = index;
     this.editingRow = { ...this.tableData[index] };
+    console.log(this.editingRow);
     this.editedRowIds.push(index); // Add the index to the editedRowIds array
   }
 
@@ -125,19 +126,28 @@ export class HomeComponent implements OnInit {
     const editedRows = this.tableData.filter((row, i) =>
       this.editedRowIds.includes(i)
     );
+
     const updatedRecords = editedRows.map((row) => {
       return {
         record_id: row.Record_ID !== undefined ? row.Record_ID : 0,
         AP_ID: this.AP_ID,
-        Access_Student_ID: row.accessStuID || 0,
-        Semester_Credit_Hours: parseFloat(row.creditHours.spring2023) || 0,
-        Cummulative_Credit_Hours: parseFloat(row.creditHours.cumulative) || 0,
-        Semester_GPA: parseFloat(row.gpa.spring2023) || 0,
-        Cummulative_GPA: parseFloat(row.gpa.cumulative) || 0,
+        Access_Student_ID: row.accessStuID || '',
+        Semester_Credit_Hours:
+          (row.creditHours.spring2023 &&
+            parseFloat(row.creditHours.spring2023)) ||
+          '',
+        Cummulative_Credit_Hours:
+          (row.creditHours.cumulative &&
+            parseFloat(row.creditHours.cumulative)) ||
+          '',
+        Semester_GPA:
+          (row.gpa.spring2023 && parseFloat(row.gpa.spring2023)) || '',
+        Cummulative_GPA:
+          (row.gpa.cumulative && parseFloat(row.gpa.cumulative)) || '',
         Warn_Again: Boolean(row.warnAgain),
         Drop_Student: Boolean(row.drop),
-        Code: row.enrollment.code || 0,
-        Hours: row.enrollment.hours || 0,
+        Code: row.enrollment.code || '',
+        Hours: row.enrollment.hours || '',
         [`Stu ID`]: row.schoolID || '',
         Married: row.studentName.marriedName || '',
         ['College Match Denied']: Boolean(row.collegeMatchDenied),
@@ -149,6 +159,7 @@ export class HomeComponent implements OnInit {
       AP_ID: this.AP_ID,
       EnrollmentDeadline: this.enrollmentDeadline,
       PaymentDue: this.paymentDue,
+      collegeId: this.College_ID,
     };
 
     console.log('updatedHeaders', updatedHeaders);
@@ -279,18 +290,18 @@ export class HomeComponent implements OnInit {
                 middle: row.Middle,
               },
               creditHours: {
-                spring2023: row.Semester_Credit_Hours,
-                cumulative: row.Cummulative_Credit_Hours,
+                spring2023: row.Semester_Credit_Hours || '',
+                cumulative: row.Cummulative_Credit_Hours || '',
               },
               gpa: {
-                spring2023: row.Semester_GPA,
-                cumulative: row.Cummulative_GPA,
+                spring2023: row.Semester_GPA || '',
+                cumulative: row.Cummulative_GPA || '',
               },
               collegeMatchDenied: row['College Match Denied'],
               commentsStatus: row.Comments,
               enrollment: {
-                code: row.Code,
-                hours: row.Hours,
+                code: row.Code || '',
+                hours: row.Hours || '',
               },
               previousHrs: row['Prev HRS'],
               previousGPA: row['Prev GPA'],

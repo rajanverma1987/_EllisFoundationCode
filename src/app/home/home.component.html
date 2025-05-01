@@ -1,144 +1,342 @@
-
 <div class="big-container">
   <div class="header">
     <div class="light-blue-bg"></div>
     <div class="dark-blue-bg"></div>
-    <button class="logout-button" (click)="logout()"><span class="logout-button-text">Logout</span></button>
-  </div>  
+    <button class="logout-button" (click)="logout()">
+      <span class="logout-button-text">Logout</span>
+    </button>
+  </div>
   <div class="user-info">
-    <img src="../../assets/images/The-Ellis-Foundation-2020.png" alt="Logo">
+    <img src="../../assets/images/The-Ellis-Foundation-2020.png" alt="Logo" />
     <p class="welcome-email">Welcome, {{ email }}</p>
     <span class="buttonGroup">
-    <button (click)="exportToExcel()" class="Save-button">Export To Excel</button>
-    <button (click)="saveAllChanges()" class="Save-button">Save</button>
-  </span >
+      <button (click)="exportToExcel()" class="Save-button">
+        Export To Excel
+      </button>
+      <button (click)="saveAllChanges()" class="Save-button">Save</button>
+    </span>
     <div *ngIf="showSuccessButton" class="sliding-button">
       <!-- Your success button content goes here -->
       Success!
     </div>
-    
   </div>
   <div class="table-block">
-    <table class="sticky-header-table">    
+    <table class="sticky-header-table">
       <thead>
         <tr class="top-date-headers">
           <th colspan="6" style="border-bottom: transparent"></th>
-          <th colspan="4" class="sem"> Semester: <input class="top-text" style="margin-left: 85px;width: 150px; background-color: transparent;
-            border: transparent;
-            color: #075b85;
-            font-weight: bold;
-            font-size: 13px;" type="text" placeholder="year"  [(ngModel)]="year" disabled></th>
-          <th colspan="4"> Prepared: <input class="top-text" style="margin-left: 55px; width: 150px; background-color: transparent;
-            border: transparent;
-            color: #075b85;
-            font-weight: bold;
-            font-size: 13px;" type="text" [(ngModel)]="prepared" disabled></th>
+          <th colspan="4" class="sem">
+            Semester:
+            <input
+              class="top-text"
+              style="
+                margin-left: 85px;
+                width: 150px;
+                background-color: transparent;
+                border: transparent;
+                color: #075b85;
+                font-weight: bold;
+                font-size: 13px;
+              "
+              type="text"
+              placeholder="year"
+              [(ngModel)]="gradeYear"
+              disabled
+            />
+          </th>
+          <th colspan="4">
+            Prepared:
+            <input
+              class="top-text"
+              style="
+                margin-left: 55px;
+                width: 150px;
+                background-color: transparent;
+                border: transparent;
+                color: #075b85;
+                font-weight: bold;
+                font-size: 13px;
+              "
+              type="text"
+              [(ngModel)]="prepared"
+              disabled
+            />
+          </th>
           <th colspan="9" style="border-bottom: transparent"></th>
         </tr>
         <tr class="top-date-headers">
-          <th colspan="6" style="border-top: transparent" ></th>
-          <th colspan="4">Enrollment Deadline:<input class="top-text" style="margin-left: 8px;width: 150px;" type="date" placeholder="(provide date)" [(ngModel)]="enrollmentDeadline"></th>
-          <th colspan="4">Payment Due:<input class="top-text" style="margin-left: 28px; width: 150px;" type="date" placeholder="(provide date)" [(ngModel)]="paymentDue"></th>
+          <th colspan="6" style="border-top: transparent"></th>
+          <th colspan="4">
+            Enrollment Deadline:<input
+              class="top-text"
+              style="margin-left: 8px; width: 150px"
+              type="date"
+              placeholder="(provide date)"
+              [(ngModel)]="enrollmentDeadline"
+            />
+          </th>
+          <th colspan="4">
+            Payment Due:<input
+              class="top-text"
+              style="margin-left: 28px; width: 150px"
+              type="date"
+              placeholder="(provide date)"
+              [(ngModel)]="paymentDue"
+            />
+          </th>
           <th colspan="9" style="border-top: transparent"></th>
         </tr>
-    </thead>
-  </table>
+      </thead>
+    </table>
   </div>
   <div class="table-block1" #tableToExport>
     <table class="sticky-header-table">
-        <thead style="font-size: 13px;" class="stickyHeaders">
-          <tr>
-            <th colspan="2" style="border-bottom: transparent"></th>
-            <th colspan="4" rowspan="2">Student Name</th>
-            <th colspan="2" rowspan="2">Credit Hours</th>
-            <th colspan="2" rowspan="2">GPA</th>
-            <th rowspan="2" style="border-bottom: transparent"></th>
-            <!-- <th rowspan="2" style="border-bottom: transparent"></th> -->
-            <th rowspan="2" colspan="2" style="background-color: #faefef;"><input class="header-text non-editing-box" type="text" [(ngModel)]="year" disabled></th>
-            <th colspan="10" *ngIf="tableData.length > 0 && followup === 1">Follow Up</th>
-            <th rowspan="2" style="border-bottom: transparent"></th>
-            <th rowspan="2" style="border-bottom: transparent; background-color: #faefef;"></th>
-            <th rowspan="2" style="border-bottom: transparent"></th>
-            <th rowspan="2" style="border-bottom: transparent" *ngIf="tableData.length > 0 && followup === 1"></th>
-          </tr>
-          <tr>
-            <th rowspan="1" style="border-top: transparent; border-right: transparent;"></th>
-            <th rowspan="1" style="border-top: transparent;  border-left: transparent;"></th>
-            <th colspan="5" *ngIf="tableData.length > 0 && followup === 1">Warnings</th>
-            <th style="background-color: #faefef;border-bottom: transparent" *ngIf="tableData.length > 0 && followup === 1"></th>
-            <th colspan="2" *ngIf="tableData.length > 0 && followup === 1">Match Denied</th>
-            <th style="background-color: #d4e8f3;border-bottom: transparent" *ngIf="tableData.length > 0 && followup === 1"></th>  
-            <th style="background-color: #d4e8f3;border-bottom: transparent" *ngIf="tableData.length > 0 && followup === 1"></th> 
-          </tr>
-          <tr>
-            <th style="border-top: transparent">New Incoming Student</th>
-            <th style="border-top: transparent">School ID</th>
-            <th >Last</th>
-            <th>Married Name</th>
-            <th>First</th>
-            <th>Middle</th>
-            <th style="background-color: #faefef;"><input class="header-text non-editing-box" type="text" [(ngModel)]="gradeYear" ></th>
-            <th style="background-color: #faefef;"  >Cumulative</th>
-            <th style="background-color: #faefef;"><input class="header-text non-editing-box" type="text" [(ngModel)]="gradeYear" ></th>
-            <th style="background-color: #faefef;"  >Cumulative</th>
-            <!-- <th style="border-top: transparent">College Match Denied</th> -->
-            <th style="border-top: transparent; min-width: 18rem;">Comments</th>
-            <th style="background-color: #faefef;">Code</th>
-            <th style="background-color: #faefef;">Hours</th>
-            <th *ngIf="tableData.length > 0 && followup === 1">Previous HRS?</th>
-            <th *ngIf="tableData.length > 0 && followup === 1">Previous GPA?</th>
-            <th *ngIf="tableData.length > 0 && followup === 1">Hours</th>
-            <th *ngIf="tableData.length > 0 && followup === 1">Grades</th>
-            <th *ngIf="tableData.length > 0 && followup === 1" style="background-color: #faefef;">Warn Again</th>
-            <th *ngIf="tableData.length > 0 && followup === 1" style="background-color: #faefef;border-top: transparent">Drop</th>
-            <th *ngIf="tableData.length > 0 && followup === 1" >Denied Previously</th>
-            <th *ngIf="tableData.length > 0 && followup === 1">Current Semester</th>
-            <th style="border-top: transparent" *ngIf="tableData.length > 0 && followup === 1">Renew For 5th Yr?</th>  
-            <th style="border-top: transparent" *ngIf="tableData.length > 0 && followup === 1">Completed Semesters</th> 
-            <th style="border-top: transparent" *ngIf="tableData.length > 0 && followup === 1">Amount If Not $2k</th>
-            <th style="border-top: transparent">Fall Only?</th>
-            <th style="border-top: transparent; background-color: #faefef;">More Info</th>
-            <th style="width: 30px !important; border-top: transparent; padding: 1px;">
-              <button (click)="downloadFilesZip()" class="Files-button"><span class="Files-button-text">Download All Release</span></button>
-            </th>
-          </tr>
-        </thead>
-      <tbody >
+      <thead style="font-size: 13px" class="stickyHeaders">
+        <tr>
+          <th colspan="2" style="border-bottom: transparent"></th>
+          <th colspan="4" rowspan="2">Student Name</th>
+          <th colspan="2" rowspan="2">Credit Hours</th>
+          <th colspan="2" rowspan="2">GPA</th>
+          <th rowspan="2" style="border-bottom: transparent"></th>
+          <!-- <th rowspan="2" style="border-bottom: transparent"></th> -->
+          <th rowspan="2" colspan="2" style="background-color: #faefef">
+            <input
+              class="header-text non-editing-box"
+              type="text"
+              [(ngModel)]="gradeYear"
+              disabled
+            />
+          </th>
+          <th colspan="10" *ngIf="tableData.length > 0 && followup === 1">
+            Follow Up
+          </th>
+          <th rowspan="2" style="border-bottom: transparent"></th>
+          <th
+            rowspan="2"
+            style="border-bottom: transparent; background-color: #faefef"
+          ></th>
+          <th rowspan="2" style="border-bottom: transparent"></th>
+          <th
+            rowspan="2"
+            style="border-bottom: transparent"
+            *ngIf="tableData.length > 0 && followup === 1"
+          ></th>
+        </tr>
+        <tr>
+          <th
+            rowspan="1"
+            style="border-top: transparent; border-right: transparent"
+          ></th>
+          <th
+            rowspan="1"
+            style="border-top: transparent; border-left: transparent"
+          ></th>
+          <th colspan="5" *ngIf="tableData.length > 0 && followup === 1">
+            Warnings
+          </th>
+          <th
+            style="background-color: #faefef; border-bottom: transparent"
+            *ngIf="tableData.length > 0 && followup === 1"
+          ></th>
+          <th colspan="2" *ngIf="tableData.length > 0 && followup === 1">
+            Match Denied
+          </th>
+          <th
+            style="background-color: #d4e8f3; border-bottom: transparent"
+            *ngIf="tableData.length > 0 && followup === 1"
+          ></th>
+          <th
+            style="background-color: #d4e8f3; border-bottom: transparent"
+            *ngIf="tableData.length > 0 && followup === 1"
+          ></th>
+        </tr>
+        <tr>
+          <th style="border-top: transparent">New Incoming Student</th>
+          <th style="border-top: transparent">School ID</th>
+          <th>Last</th>
+          <th>Married Name</th>
+          <th>First</th>
+          <th>Middle</th>
+          <th style="background-color: #faefef">
+            <input
+              class="header-text non-editing-box"
+              type="text"
+              [(ngModel)]="year"
+            />
+          </th>
+          <th style="background-color: #faefef">Cumulative</th>
+          <th style="background-color: #faefef">
+            <input
+              class="header-text non-editing-box"
+              type="text"
+              [(ngModel)]="year"
+            />
+          </th>
+          <th style="background-color: #faefef">Cumulative</th>
+          <!-- <th style="border-top: transparent">College Match Denied</th> -->
+          <th style="border-top: transparent; min-width: 18rem">Comments</th>
+          <th style="background-color: #faefef">Code</th>
+          <th style="background-color: #faefef">Hours</th>
+          <th *ngIf="tableData.length > 0 && followup === 1">Previous HRS?</th>
+          <th *ngIf="tableData.length > 0 && followup === 1">Previous GPA?</th>
+          <th *ngIf="tableData.length > 0 && followup === 1">Hours</th>
+          <th *ngIf="tableData.length > 0 && followup === 1">Grades</th>
+          <th
+            *ngIf="tableData.length > 0 && followup === 1"
+            style="background-color: #faefef"
+          >
+            Warn Again
+          </th>
+          <th
+            *ngIf="tableData.length > 0 && followup === 1"
+            style="background-color: #faefef; border-top: transparent"
+          >
+            Drop
+          </th>
+          <th *ngIf="tableData.length > 0 && followup === 1">
+            Denied Previously
+          </th>
+          <th *ngIf="tableData.length > 0 && followup === 1">
+            Current Semester
+          </th>
+          <th
+            style="border-top: transparent"
+            *ngIf="tableData.length > 0 && followup === 1"
+          >
+            Renew For 5th Yr?
+          </th>
+          <th
+            style="border-top: transparent"
+            *ngIf="tableData.length > 0 && followup === 1"
+          >
+            Completed Semesters
+          </th>
+          <th
+            style="border-top: transparent"
+            *ngIf="tableData.length > 0 && followup === 1"
+          >
+            Amount If Not $2k
+          </th>
+          <th style="border-top: transparent">Fall Only?</th>
+          <th style="border-top: transparent; background-color: #faefef">
+            More Info
+          </th>
+          <th
+            style="
+              width: 30px !important;
+              border-top: transparent;
+              padding: 1px;
+            "
+          >
+            <button (click)="downloadFilesZip()" class="Files-button">
+              <span class="Files-button-text">Download All Release</span>
+            </button>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
         <ng-container *ngFor="let rowData of tableData; let i = index">
-          <tr >
+          <tr>
             <td class="non-editing-box">{{ rowData.newIncomingStudent }}</td>
-            <td  class="editing-box no-wrap" >
-                 <input type="text" inputmode="numeric" [(ngModel)]="rowData.schoolID"   class="editing-box" (blur)="exitEditing()" />
+            <td class="editing-box no-wrap">
+              <input
+                type="text"
+                inputmode="numeric"
+                [(ngModel)]="rowData.schoolID"
+                class="editing-box"
+                (blur)="exitEditing()"
+              />
             </td>
-            <td class="non-editing-box"> {{ rowData.studentName.last }}</td>
-            <td  (click)="startEditing(i)" class="editing-box">
-              <input type="text" [(ngModel)]="rowData.studentName.marriedName"   class="editing-box" (blur)="exitEditing()" />
-         </td>
+            <td class="non-editing-box">{{ rowData.studentName.last }}</td>
+            <td (click)="startEditing(i)" class="editing-box">
+              <input
+                type="text"
+                [(ngModel)]="rowData.studentName.marriedName"
+                class="editing-box"
+                (blur)="exitEditing()"
+              />
+            </td>
             <td class="non-editing-box">{{ rowData.studentName.first }}</td>
             <td class="non-editing-box">{{ rowData.studentName.middle }}</td>
             <td (click)="startEditing(i)" class="editing-box">
-              <input type="number"  inputmode="numeric" [(ngModel)]="rowData.creditHours.spring2023" class="editing-box" (keypress)="decimalfiltertwo($event)" (blur)="exitEditing()" />
+              <input
+                type="number"
+                inputmode="numeric"
+                [(ngModel)]="rowData.creditHours.spring2023"
+                class="editing-box"
+                (keypress)="decimalfiltertwo($event)"
+                (blur)="exitEditing()"
+              />
             </td>
             <td (click)="startEditing(i)" class="editing-box">
-              <input type="number"  inputmode="numeric" [(ngModel)]="rowData.creditHours.cumulative" class="editing-box" (keypress)="decimalfiltertwo($event)" (blur)="exitEditing()"/>
+              <input
+                type="number"
+                inputmode="numeric"
+                [(ngModel)]="rowData.creditHours.cumulative"
+                class="editing-box"
+                (keypress)="decimalfiltertwo($event)"
+                (blur)="exitEditing()"
+              />
             </td>
-            
-            
+
             <td (click)="startEditing(i)" class="editing-box">
-              <input type="number"  inputmode="numeric" [(ngModel)]="rowData.gpa.spring2023" class="editing-box" (keypress)="decimalfilterthree($event)" (blur)="exitEditing()"/>
+              <input
+                type="number"
+                inputmode="numeric"
+                [(ngModel)]="rowData.gpa.spring2023"
+                class="editing-box"
+                (keypress)="decimalfilterthree($event)"
+                (blur)="exitEditing()"
+              />
             </td>
             <td (click)="startEditing(i)" class="editing-box">
-              <input type="number"  inputmode="numeric" [(ngModel)]="rowData.gpa.cumulative" class="editing-box" (keypress)="decimalfilterthree($event)" (blur)="exitEditing()"/>
+              <input
+                type="number"
+                inputmode="numeric"
+                [(ngModel)]="rowData.gpa.cumulative"
+                class="editing-box"
+                (keypress)="decimalfilterthree($event)"
+                (blur)="exitEditing()"
+              />
             </td>
             <!-- <td class="non-editing-box">{{ rowData.collegeMatchDenied }}</td> -->
-            <td (click)="startEditing(i)" class="editing-box" >
-              <textarea  tabindex="-1" type="text" [ariaRowSpan]="3" [(ngModel)]="rowData.commentsStatus" class="editing-box comments" (blur)="exitEditing()" ></textarea>
+            <td (click)="startEditing(i)" class="editing-box">
+              <textarea
+                tabindex="-1"
+                type="text"
+                [ariaRowSpan]="3"
+                [(ngModel)]="rowData.commentsStatus"
+                class="editing-box comments"
+                (blur)="exitEditing()"
+              ></textarea>
             </td>
-            <td (focus)="startEditing(i)" class="editing-box">
-              <input type="number" pattern="[0-9]*" inputmode="numeric" [(ngModel)]="rowData.enrollment.code" class="editing-box" (blur)="exitEditing()" />
+            <td class="editing-box">
+              <select
+                (click)="startEditing(i)"
+                [(ngModel)]="rowData.enrollment.code"
+                class="editing-box"
+                (blur)="exitEditing()"
+              >
+                <option value=""></option>
+                <option value="E">E - Enrolled</option>
+                <option value="G">G - Graduated</option>
+                <option value="T">T - Transferred</option>
+                <option value="S">S - Suspended</option>
+                <option value="H">H - Hold</option>
+                <option value="D">D - Dropped</option>
+                <option value="X">X - Not Eligible</option>
+              </select>
             </td>
-            <td (focus)="startEditing(i)" class="editing-box">
-              <input type="number" pattern="[0-9]*" inputmode="numeric" [(ngModel)]="rowData.enrollment.hours" class="editing-box" (blur)="exitEditing()" />
+            <td class="editing-box">
+              <input
+                (click)="startEditing(i)"
+                type="number"
+                pattern="[0-9]*"
+                inputmode="numeric"
+                [(ngModel)]="rowData.enrollment.hours"
+                class="editing-box"
+                (blur)="exitEditing()"
+              />
             </td>
             <td *ngIf="followup === 1">
               {{ rowData.previousHrs }}
@@ -152,49 +350,86 @@
             <td *ngIf="followup === 1">
               {{ rowData.grades }}
             </td>
-<!----------------------------------*********OLD INPUT TYPE BOXES***************-------------------------------------->
+            <!----------------------------------*********OLD INPUT TYPE BOXES***************-------------------------------------->
             <td *ngIf="followup === 1" (click)="startEditing(i)">
-                {{ rowData.warnAgain ? 'Y' : 'N' }}
-                <label class="checkbox-container">
-                  <input type="checkbox" [(ngModel)]="rowData.warnAgain" class="checkbox-input" (blur)="exitEditing()"/>
-                  <span class="checkbox-custom"></span>
-                </label>
+              {{ rowData.warnAgain ? "Y" : "N" }}
+              <label class="checkbox-container">
+                <input
+                  type="checkbox"
+                  [(ngModel)]="rowData.warnAgain"
+                  class="checkbox-input"
+                  (blur)="exitEditing()"
+                />
+                <span class="checkbox-custom"></span>
+              </label>
             </td>
-            
+
             <td *ngIf="followup === 1" (click)="startEditing(i)">
-                {{ rowData.drop ? 'Y' : 'N' }}
-                <label class="checkbox-container">
-                  <input type="checkbox" [(ngModel)]="rowData.drop" class="checkbox-input" (blur)="exitEditing()"/>
-                  <span class="checkbox-custom"></span>
-                </label>
+              {{ rowData.drop ? "Y" : "N" }}
+              <label class="checkbox-container">
+                <input
+                  type="checkbox"
+                  [(ngModel)]="rowData.drop"
+                  class="checkbox-input"
+                  (blur)="exitEditing()"
+                />
+                <span class="checkbox-custom"></span>
+              </label>
             </td>
-<!----------------------------------*********OLD INPUT TYPE BOXES***************----------------------------------- -->
-            <td class="non-editing-box" *ngIf="followup === 1">{{ rowData.deniedPreviously }}</td>
-            <td class="non-editing-box" *ngIf="followup === 1">{{ rowData.currentSemester }}</td>
-            <td class="non-editing-box" *ngIf=" followup === 1">{{ rowData.renewFor5thYear }}</td>
-            <td class="non-editing-box" *ngIf=" followup === 1">{{ rowData.completedSemesters }}</td>
-            <td class="non-editing-box" *ngIf="followup === 1">{{ rowData.amountIfNot2k }}</td>
+            <!----------------------------------*********OLD INPUT TYPE BOXES***************----------------------------------- -->
+            <td class="non-editing-box" *ngIf="followup === 1">
+              {{ rowData.deniedPreviously }}
+            </td>
+            <td class="non-editing-box" *ngIf="followup === 1">
+              {{ rowData.currentSemester }}
+            </td>
+            <td class="non-editing-box" *ngIf="followup === 1">
+              {{ rowData.renewFor5thYear }}
+            </td>
+            <td class="non-editing-box" *ngIf="followup === 1">
+              {{ rowData.completedSemesters }}
+            </td>
+            <td class="non-editing-box" *ngIf="followup === 1">
+              {{ rowData.amountIfNot2k }}
+            </td>
             <td class="non-editing-box">{{ rowData.fallOnly }}</td>
-               <td class="non-editing-box">
-                <button (click)="openPopup(rowData.accessStuID)" class="Moreinfo-button"><span class="Moreinfo-button-text">More Info	</span></button>
-               </td> 
-            <td class="pdf-download">
-              <button (click)="openFilesPopup(rowData.accessStuID)" class="Files-button"><span class="Files-button-text">Open Release</span></button>
+            <td class="non-editing-box">
+              <button
+                (click)="openPopup(rowData.accessStuID)"
+                class="Moreinfo-button"
+              >
+                <span class="Moreinfo-button-text">More Info </span>
+              </button>
             </td>
-            </tr>
+            <td class="pdf-download">
+              <button
+                (click)="openFilesPopup(rowData.accessStuID)"
+                class="Files-button"
+              >
+                <span class="Files-button-text">Open Release</span>
+              </button>
+            </td>
+          </tr>
         </ng-container>
       </tbody>
-      </table>
-    </div>
-    <div class="notes">
-      <p >Instructions</p>
-        <ul>
-          <li>Please update ID# with your school ID if different than listed above.</li>
-          <li>If your College operates on a schedule other than Semesters; Please provide Hours and GPA for the most recently completed Term, and enrollment hours for the current or upcoming Term. Please provide in the Comments column any conversion to semester formulas.</li>
-          <li>Student Status: Use this field to report the Student's status. Codes: E - Enrolled (record number of Hours), G - Graduated (Sem-YR), T - Transferred (Last semester completed), S - Suspended, H - on Hold, or D - Dropped (Date).</li>
-          <li>Comments Section - Please note such things as Graduation Date if the student will graduate this year.</li>
-        </ul>
-    </div>
-
+    </table>
+  </div>
+  <div class="notes">
+    <p>Instructions</p>
+    <ul>
+      <li>
+        Please update ID# with your school ID if different than listed above.
+      </li>
+      <li>
+        If your College operates on a schedule other than Semesters; Please
+        provide Hours and GPA for the most recently completed Term, and
+        enrollment hours for the current or upcoming Term. Please provide in the
+        Comments column any conversion to semester formulas.
+      </li>
+      <li>
+        Comments Section - Please note such things as Graduation Date if the
+        student will graduate this year.
+      </li>
+    </ul>
+  </div>
 </div>
-
