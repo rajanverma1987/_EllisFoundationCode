@@ -75,8 +75,8 @@ tbody tr:nth-child(odd) {
   margin-left: -150px;
 }
 
-input[type="number"]::-webkit-inner-spin-button{
-display: none;
+input[type="number"]::-webkit-inner-spin-button {
+  display: none;
 }
 .logout-button {
   float: right;
@@ -89,7 +89,7 @@ display: none;
   background-color: transparent;
   outline: none;
   overflow: hidden;
-  transition: color .3s ease-in-out;
+  transition: color 0.3s ease-in-out;
   border-radius: 3px;
 }
 .logout-button-text {
@@ -149,8 +149,8 @@ display: none;
 }
 
 .Save-button {
-padding:10px ;
-margin: 5px;
+  padding: 10px;
+  margin: 5px;
   font-size: 14px;
   text-transform: capitalize;
   cursor: pointer;
@@ -179,10 +179,10 @@ margin: 5px;
   border: 0px solid #3498db;
   padding: 0 !important;
   outline: none;
-  transition: border-color .3s,box-shadow .3s;
+  transition: border-color 0.3s, box-shadow 0.3s;
   cursor: pointer;
   text-align: center;
-  animation: _ngcontent-ng-c3301795948_fadeIn .3s ease;
+  animation: _ngcontent-ng-c3301795948_fadeIn 0.3s ease;
 }
 .editing-box:focus {
   border-color: #2980b9;
@@ -205,16 +205,15 @@ margin: 5px;
   border-collapse: collapse;
   background: #d4e8f347;
   border: 1px solid black;
-
 }
-.stickyHeaders{
+.stickyHeaders {
   position: sticky;
   top: -2px;
   z-index: 10;
 }
 .sticky-header-table th {
   background-color: #bfe3f5;
-  
+
   font-weight: 600;
 }
 .sticky-header-table td {
@@ -235,27 +234,25 @@ margin: 5px;
   position: sticky;
   top: -1;
 }
-.table-block1::-webkit-scrollbar{
+.table-block1::-webkit-scrollbar {
   display: none;
 }
 .table-block1 {
-  
   height: 65vh;
   overflow-y: auto;
   padding-inline: 3px;
-
 }
 
-.notes{
+.notes {
   height: 20vh;
   width: 100%;
   text-align: left;
   padding-left: 1rem;
   padding-top: 10px;
   background-color: #8fc6e1;
-  
+  /* overflow-y: auto; */
 }
-.notes p{
+.notes p {
   font-weight: bold;
   margin-bottom: 10px;
 }
@@ -304,23 +301,23 @@ img {
   width: 200px;
   height: auto;
   margin-top: 3px;
-  margin-left: 5%; 
+  margin-left: 5%;
   float: left;
 }
-.header-text{
+.header-text {
   background-color: transparent;
   border: transparent;
   color: #075b85;
   font-size: 13px;
   padding: 5px;
   box-sizing: border-box;
-  transition: border-color .3s;
+  transition: border-color 0.3s;
   text-align: inherit;
   font-weight: inherit;
 }
-.Moreinfo-button{
+.Moreinfo-button {
   font-size: 10px;
-  text-transform:capitalize;
+  text-transform: capitalize;
   cursor: pointer;
   position: relative;
   background-color: white;
@@ -331,74 +328,71 @@ img {
   text-align: center;
   width: 70px;
   border: none;
-  outline:  none;
+  outline: none;
   background-color: transparent;
 }
-.Moreinfo-button-text{
+.Moreinfo-button-text {
   color: #075b85;
   display: inline-block;
   position: relative;
   width: 50px;
 }
-.comments{
+.comments {
   min-width: 18rem !important;
 }
 
 .sliding-button {
   position: fixed;
-    bottom: 76.5%;
-    right: 98%;
-    background-color: #075b85;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointe;
-    border-radius: 3px;
-    opacity: 0;
-    z-index: 1000;
+  bottom: 76.5%;
+  left: 91%;
+  background-color: #075b85;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointe;
+  border-radius: 3px;
+  opacity: 0;
+  z-index: 1000;
 
   /* CSS Animation */
   animation: slideIn 0.5s ease-in-out forwards;
 }
 
-textarea{
+textarea {
   resize: none;
 }
 
 @keyframes slideIn {
   from {
     opacity: 0;
-    transform: translateX(0);
+    transform: translateX(100%);
   }
   to {
     opacity: 1;
-    transform: translateX(100%);
+    transform: translateX(0);
   }
 }
 
-
-
-input:focus{
+input:focus {
   border: none;
   outline: none;
-  background-color:rgba(255, 255, 0, 0.2);
+  background-color: rgba(255, 255, 0, 0.2);
 }
 
 .Files-button {
   font-size: 12px;
-  text-transform:capitalize;
+  text-transform: capitalize;
   cursor: pointer;
   outline: none;
   text-align: center;
   border: none;
-  outline:  none;
+  outline: none;
   background-color: transparent;
-  
 }
 .Files-button-text {
   color: white;
@@ -409,11 +403,12 @@ input:focus{
   color: blue !important;
 }
 
-.buttonGroup{
+.buttonGroup {
   float: right;
   margin-bottom: 1rem;
   display: inline-flex;
-  width: 200px;
+  width: 382px;
+  /* 200px */
   justify-content: center;
   align-items: center;
 }
