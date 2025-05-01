@@ -447,3 +447,19 @@ input:focus {
 .clickable-text {
   cursor: pointer;
 }
+
+.modal-contents {
+  display: flex;
+  align-items: start;
+  justify-content: start;
+  flex-direction: column;
+}
+
+.modal-contents ul {
+  display: flex;
+  align-items: start;
+  justify-content: start;
+  flex-direction: column;
+  text-align: start;
+  list-style: none;
+}
