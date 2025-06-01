@@ -6,6 +6,7 @@
       <span class="logout-button-text">Save Update and Return Later</span>
     </button>
   </div>
+
   <div class="user-info">
     <img src="../../assets/images/The-Ellis-Foundation-2020.png" alt="Logo" />
     <p class="welcome-email">Welcome, {{ email }}</p>
@@ -91,6 +92,7 @@
       </thead>
     </table>
   </div>
+
   <div class="table-block1" #tableToExport>
     <table class="sticky-header-table">
       <thead style="font-size: 13px" class="stickyHeaders">
@@ -420,6 +422,8 @@
       </tbody>
     </table>
   </div>
+
+  <!-- FOOTER INSTRUCTION -->
   <div class="notes">
     <p>Instructions</p>
     <ul>
@@ -461,6 +465,8 @@
       </li> -->
     </ul>
   </div>
+
+  <!-- MODAL -->
   <div class="modal" *ngIf="showModal">
     <div class="modal-content">
       <span class="close" (click)="closeTermsModal()">&times;</span>
