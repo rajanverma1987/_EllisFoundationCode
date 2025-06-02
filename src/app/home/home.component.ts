@@ -325,6 +325,7 @@ export class HomeComponent implements OnInit {
               fallOnly: row['Fall only ?'],
               accessStuID: row['Access Stu ID'],
               Record_ID: row.Record_ID || 0,
+              scholarshipAmount: row['Pledge Amount'],
             };
           });
 
@@ -439,12 +440,11 @@ export class HomeComponent implements OnInit {
 
   showModal = false;
 
-openTermsModal() {
-  this.showModal = true;
-}
+  openTermsModal() {
+    this.showModal = true;
+  }
 
-closeTermsModal() {
-  this.showModal = false;
-}
-
+  closeTermsModal() {
+    this.showModal = false;
+  }
 }

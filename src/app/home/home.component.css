@@ -237,7 +237,15 @@ input[type="number"]::-webkit-inner-spin-button {
   top: -1;
 }
 .table-block1::-webkit-scrollbar {
-  display: none;
+  /* display: none; */
+}
+.table-block1::-webkit-scrollbar-track {
+  background: #3498db !important;
+  border-radius: 10px !important;
+}
+.table-block1::-webkit-scrollbar-thumb {
+  color: #3498db !important;
+  border-radius: 10px !important;
 }
 .table-block1 {
   height: 59vh;
@@ -463,5 +471,5 @@ input:focus {
   justify-content: start;
   flex-direction: column;
   text-align: start;
-  list-style: none;
+  /* list-style: none; */
 }
