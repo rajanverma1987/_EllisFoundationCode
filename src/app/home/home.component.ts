@@ -436,4 +436,15 @@ export class HomeComponent implements OnInit {
       }
     });
   }
+
+  showModal = false;
+
+openTermsModal() {
+  this.showModal = true;
+}
+
+closeTermsModal() {
+  this.showModal = false;
+}
+
 }

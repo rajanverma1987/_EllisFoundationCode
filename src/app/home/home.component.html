@@ -3,9 +3,10 @@
     <div class="light-blue-bg"></div>
     <div class="dark-blue-bg"></div>
     <button class="logout-button" (click)="logout()">
-      <span class="logout-button-text">Logout</span>
+      <span class="logout-button-text">Save Update and Return Later</span>
     </button>
   </div>
+
   <div class="user-info">
     <img src="../../assets/images/The-Ellis-Foundation-2020.png" alt="Logo" />
     <p class="welcome-email">Welcome, {{ email }}</p>
@@ -13,7 +14,9 @@
       <button (click)="exportToExcel()" class="Save-button">
         Export To Excel
       </button>
-      <button (click)="saveAllChanges()" class="Save-button">Save</button>
+      <button (click)="saveAllChanges()" class="Save-button">
+        Submit Completed Form to Ellis
+      </button>
     </span>
     <div *ngIf="showSuccessButton" class="sliding-button">
       <!-- Your success button content goes here -->
@@ -40,7 +43,7 @@
               "
               type="text"
               placeholder="year"
-              [(ngModel)]="gradeYear"
+              [(ngModel)]="year"
               disabled
             />
           </th>
@@ -89,6 +92,7 @@
       </thead>
     </table>
   </div>
+
   <div class="table-block1" #tableToExport>
     <table class="sticky-header-table">
       <thead style="font-size: 13px" class="stickyHeaders">
@@ -103,7 +107,7 @@
             <input
               class="header-text non-editing-box"
               type="text"
-              [(ngModel)]="gradeYear"
+              [(ngModel)]="year"
               disabled
             />
           </th>
@@ -157,11 +161,12 @@
           <th>Married Name</th>
           <th>First</th>
           <th>Middle</th>
+          <th>Terms</th>
           <th style="background-color: #faefef">
             <input
               class="header-text non-editing-box"
               type="text"
-              [(ngModel)]="year"
+              [(ngModel)]="gradeYear"
             />
           </th>
           <th style="background-color: #faefef">Cumulative</th>
@@ -169,7 +174,7 @@
             <input
               class="header-text non-editing-box"
               type="text"
-              [(ngModel)]="year"
+              [(ngModel)]="gradeYear"
             />
           </th>
           <th style="background-color: #faefef">Cumulative</th>
@@ -217,9 +222,9 @@
           >
             Amount If Not $2k
           </th>
-          <th style="border-top: transparent">Fall Only?</th>
+          <th style="border-top: transparent">Scholarship Amount</th>
           <th style="border-top: transparent; background-color: #faefef">
-            More Info
+            More Student Detail
           </th>
           <th
             style="
@@ -229,7 +234,9 @@
             "
           >
             <button (click)="downloadFilesZip()" class="Files-button">
-              <span class="Files-button-text">Download All Release</span>
+              <span class="Files-button-text"
+                >Click here to Download All Release</span
+              >
             </button>
           </th>
         </tr>
@@ -246,6 +253,8 @@
                 class="editing-box"
                 (blur)="exitEditing()"
               />
+
+              <!-- {{ rowData.schoolID }} -->
             </td>
             <td class="non-editing-box">{{ rowData.studentName.last }}</td>
             <td (click)="startEditing(i)" class="editing-box">
@@ -258,6 +267,13 @@
             </td>
             <td class="non-editing-box">{{ rowData.studentName.first }}</td>
             <td class="non-editing-box">{{ rowData.studentName.middle }}</td>
+            <td class="non-editing-box">
+              <span (click)="openTermsModal()" class="clickable-text"
+                >Semester Award</span
+              >
+
+              <!-- {{ rowData.studentName.terms }} -->
+            </td>
             <td (click)="startEditing(i)" class="editing-box">
               <input
                 type="number"
@@ -310,26 +326,18 @@
                 (blur)="exitEditing()"
               ></textarea>
             </td>
-            <td class="editing-box">
-              <select
-                (click)="startEditing(i)"
+            <td (focus)="startEditing(i)" class="editing-box">
+              <input
+                type="number"
+                pattern="[0-9]*"
+                inputmode="numeric"
                 [(ngModel)]="rowData.enrollment.code"
                 class="editing-box"
                 (blur)="exitEditing()"
-              >
-                <option value=""></option>
-                <option value="E">E - Enrolled</option>
-                <option value="G">G - Graduated</option>
-                <option value="T">T - Transferred</option>
-                <option value="S">S - Suspended</option>
-                <option value="H">H - Hold</option>
-                <option value="D">D - Dropped</option>
-                <option value="X">X - Not Eligible</option>
-              </select>
+              />
             </td>
-            <td class="editing-box">
+            <td (focus)="startEditing(i)" class="editing-box">
               <input
-                (click)="startEditing(i)"
                 type="number"
                 pattern="[0-9]*"
                 inputmode="numeric"
@@ -392,7 +400,7 @@
             <td class="non-editing-box" *ngIf="followup === 1">
               {{ rowData.amountIfNot2k }}
             </td>
-            <td class="non-editing-box">{{ rowData.fallOnly }}</td>
+            <td class="non-editing-box">{{ rowData.scholarshipAmount }}</td>
             <td class="non-editing-box">
               <button
                 (click)="openPopup(rowData.accessStuID)"
@@ -414,10 +422,29 @@
       </tbody>
     </table>
   </div>
+
+  <!-- FOOTER INSTRUCTION -->
   <div class="notes">
     <p>Instructions</p>
     <ul>
       <li>
+        Comments Section - Please note any corrections to Student ID, hold
+        status, graduation status, etc. in this column for each student.<br />
+        If the school id column cannot be updated directly, it can then remove
+        that from above.
+      </li>
+      <li>
+        Please update ID# … - remove if id column cannot be updated by college.
+      </li>
+      <li>
+        More Information can be found for a student by clicking on "More Info"
+        in the Student Data column.
+      </li>
+      <li>
+        Click header "Download All Releases" to bulk download all releases, or
+        on each line for individual students.
+      </li>
+      <!-- <li>
         Please update ID# with your school ID if different than listed above.
       </li>
       <li>
@@ -427,9 +454,75 @@
         Comments column any conversion to semester formulas.
       </li>
       <li>
+        Student Status: Use this field to report the Student's status. Codes: E
+        - Enrolled (record number of Hours), G - Graduated (Sem-YR), T -
+        Transferred (Last semester completed), S - Suspended, H - on Hold, or D
+        - Dropped (Date).
+      </li>
+      <li>
         Comments Section - Please note such things as Graduation Date if the
         student will graduate this year.
-      </li>
+      </li> -->
     </ul>
+  </div>
+
+  <!-- MODAL -->
+  <div class="modal" *ngIf="showModal">
+    <div class="modal-content">
+      <span class="close" (click)="closeTermsModal()">&times;</span>
+      <div class="modal-contents">
+        <h3>Scholarship Award Terms</h3>
+
+        <h4>Semester Award</h4>
+        <ul>
+          <li>Amount is paid each semester student remains eligible.</li>
+          <li>
+            <strong>If a participating college:</strong>
+            <ul>
+              <li>
+                "Per our matching agreement, College matches up to 50% each
+                semester. College amount is equal to the Total Award less Ellis
+                Payment amount. (i.e. $1,000 award, Ellis pays $500 and College
+                pays $500)"
+              </li>
+            </ul>
+          </li>
+          <li>
+            Scholarship eligible costs: Tuition, fees, books, class required
+            supplies, housing, and meal plans, if they are charged to student
+            account.
+          </li>
+          <li>Any Excess funds are to be refunded to The Ellis Foundation.</li>
+        </ul>
+
+        <h4>Trades Award</h4>
+        <ul>
+          <li>
+            Annual Award Amount paid in the Fall semester for the entire school
+            year (Fall, Spring, Summer).
+          </li>
+          <li>
+            <strong>If a participating college:</strong>
+            <ul>
+              <li>
+                "Per our matching agreement, College matches up to 50% each
+                semester. College amount is equal to the Total Award less Ellis
+                Payment amount."
+              </li>
+            </ul>
+          </li>
+          <li>
+            Scholarship eligible costs: Tuition, fees, books, class required
+            supplies, housing, and meal plans, if they are charged to student
+            account.
+          </li>
+          <li>
+            Excess funds should be 'rolled over' to next semester until the
+            summer. Any excess remaining after Summer fees are covered are to be
+            refunded to The Ellis Foundation.
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 </div>
