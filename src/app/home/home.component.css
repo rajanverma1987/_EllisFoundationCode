@@ -2,7 +2,7 @@
   max-width: 100vw !important;
   height: 100vh !important;
   text-align: center;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 .header {
   position: relative;
