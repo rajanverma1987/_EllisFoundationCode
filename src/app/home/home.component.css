@@ -210,8 +210,9 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 .stickyHeaders {
   position: sticky;
-  top: -2px;
+  top: 0px;
   z-index: 10;
+  /* background: white; */
 }
 .sticky-header-table th {
   background-color: #bfe3f5;
@@ -260,11 +261,14 @@ input[type="number"]::-webkit-inner-spin-button {
   padding-left: 1rem;
   padding: 10px;
   background-color: #8fc6e1;
-  /* overflow-y: auto; */
+  overflow-y: auto;
 }
 .notes p {
   font-weight: bold;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
+}
+.notes::-webkit-scrollbar {
+  display: none;
 }
 
 .border-top {

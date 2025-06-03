@@ -14,35 +14,34 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
       </p>
     </div>
   `,
-  styles: [`
-    .popup-container {
-      padding: 30px;
-      border-radius: 5px;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-      background-color: #fff;
-      max-width: 500px;
-      width: 100%;
-      margin: auto;
-      position: relative;
-    }
+  styles: [
+    `
+      .popup-container {
+        padding: 30px;
+        border-radius: 5px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        background-color: #fff;
+        max-width: 500px;
+        width: 100%;
+        margin: auto;
+        position: relative;
+      }
 
-    h2 {
-      color: #333;
-      font-size: 1.8em;
-      margin-bottom: 15px;
-    }
+      h2 {
+        color: #333;
+        font-size: 1.8em;
+        margin-bottom: 15px;
+      }
 
-    p {
-      font-size: 1.4em;
-      line-height: 1.6;
-    }
-
-    
-  `]
+      p {
+        font-size: 1.4em;
+        line-height: 1.6;
+      }
+    `,
+  ],
 })
 export class StudentDetailPopupComponent {
-  constructor(@Inject(MAT_DIALOG_DATA) public studentDetails: any) {
-  }
+  constructor(@Inject(MAT_DIALOG_DATA) public studentDetails: any) {}
   maskSSN(ssn: string): string {
     if (!ssn) {
       return 'N/A'; // or any other placeholder for null SSN
@@ -54,7 +53,6 @@ export class StudentDetailPopupComponent {
       return 'Invalid SSN Format'; // Handle unexpected SSN format
     }
   }
-  
 
   formatDate(dateString: string): string {
     // Assuming the date is in ISO format

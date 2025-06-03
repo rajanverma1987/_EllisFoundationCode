@@ -40,6 +40,7 @@ import { saveAs } from 'file-saver';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
+  selectedRowData: any = null;
   enrollmentDeadline: string;
   paymentDue: string;
   email: string = ''; // Variable to store the logged-in user's email
@@ -152,6 +153,7 @@ export class HomeComponent implements OnInit {
         Married: row.studentName.marriedName || '',
         ['College Match Denied']: Boolean(row.collegeMatchDenied),
         Comments: row.commentsStatus || '',
+        part: row.part || 'N',
       };
     });
 
@@ -280,9 +282,11 @@ export class HomeComponent implements OnInit {
           const ap_records = data.data.data.records;
 
           this.tableData = ap_records.map((row: any) => {
+            // console.log('row', row);
             return {
               newIncomingStudent: row['Req Release New Students'],
               schoolID: row[`Stu ID`],
+              part: row[`Part?`],
               studentName: {
                 last: row.Last,
                 marriedName: row.Married,
@@ -329,8 +333,12 @@ export class HomeComponent implements OnInit {
             };
           });
 
-          this.enrollmentDeadline = formatDate(ap_headers.EnrollmentDeadline);
-          this.paymentDue = formatDate(ap_headers.PaymentDue);
+          if (ap_headers.EnrollmentDeadline) {
+            this.enrollmentDeadline = formatDate(ap_headers.EnrollmentDeadline);
+          }
+
+          if (ap_headers.paymentDue)
+            this.paymentDue = formatDate(ap_headers.PaymentDue);
           this.year = ap_headers.SemesterYear;
           this.College_ID = ap_headers.College_ID;
           this.AP_ID = ap_headers.AP_ID;
@@ -394,7 +402,7 @@ export class HomeComponent implements OnInit {
     const headers = {
       Authorization: `${token}`,
     };
-
+    console.log('apiUrl', apiUrl);
     this.http.get(apiUrl, { headers }).subscribe((data: any) => {
       const dialogRef = this.dialog.open(StudentDetailPopupComponent, {
         data: data,
@@ -440,11 +448,22 @@ export class HomeComponent implements OnInit {
 
   showModal = false;
 
-  openTermsModal() {
+  openTermsModal(rowData: any): void {
     this.showModal = true;
+    this.selectedRowData = rowData;
+    console.log('selected DAta', rowData);
   }
 
   closeTermsModal() {
     this.showModal = false;
+  }
+
+  formatAmount(value: number | string): string {
+    const number = typeof value === 'string' ? parseFloat(value) : value;
+    if (isNaN(number) || number === null) return '0';
+    return number.toLocaleString('en-US', {
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    });
   }
 }
