@@ -9,7 +9,9 @@
 
   <div class="user-info">
     <img src="../../assets/images/The-Ellis-Foundation-2020.png" alt="Logo" />
-    <p class="welcome-email">Welcome, {{ email }}</p>
+    <p class="welcome-email" *ngIf="user?.COLLEGE">
+      Welcome, {{ user?.COLLEGE }}
+    </p>
     <span class="buttonGroup">
       <button (click)="exportToExcel()" class="Save-button">
         Export To Excel
@@ -346,16 +348,22 @@
                 (blur)="exitEditing()"
               ></textarea>
             </td>
-            <td (focus)="startEditing(i)" class="editing-box">
-              <input
-                type="number"
-                pattern="[0-9]*"
-                inputmode="numeric"
+            <td class="editing-box">
+              <select
+                (click)="startEditing(i)"
                 [(ngModel)]="rowData.enrollment.code"
                 class="editing-box"
                 (blur)="exitEditing()"
-              />
-              <!--  -->
+              >
+                <option value=""></option>
+                <option value="E">E - Enrolled</option>
+                <option value="G">G - Graduated</option>
+                <option value="T">T - Transferred</option>
+                <option value="S">S - Suspended</option>
+                <option value="H">H - Hold</option>
+                <option value="D">D - Dropped</option>
+                <option value="X">X - Not Eligible</option>
+              </select>
             </td>
             <td (focus)="startEditing(i)" class="editing-box">
               <input

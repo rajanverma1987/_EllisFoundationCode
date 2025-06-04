@@ -40,6 +40,7 @@ import { saveAs } from 'file-saver';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
+  user: any;
   selectedRowData: any = null;
   enrollmentDeadline: string;
   paymentDue: string;
@@ -251,6 +252,7 @@ export class HomeComponent implements OnInit {
   loadDataFromApi(): void {
     this.dataService.fetchData().subscribe(
       (data: any) => {
+        console.log('Data', data);
         if (
           data &&
           (data.status === 201 ||
@@ -280,6 +282,8 @@ export class HomeComponent implements OnInit {
         ) {
           const ap_headers = data.data.data.headers;
           const ap_records = data.data.data.records;
+          const user = data.data.data.user;
+          this.user = user;
 
           this.tableData = ap_records.map((row: any) => {
             // console.log('row', row);

@@ -255,14 +255,22 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 .notes {
-  height: 20vh;
+  height: 17vh;
   width: 100%;
   text-align: left;
   padding-left: 1rem;
   padding: 10px;
   background-color: #8fc6e1;
   overflow-y: auto;
+  margin-bottom: 8rem;
 }
+/* .notes {
+  max-height: 40vh;
+  padding: 10px;
+  text-align: left;
+  background-color: #8fc6e1;
+  overflow-y: auto;
+} */
 .notes p {
   font-weight: bold;
   margin-bottom: 8px;
