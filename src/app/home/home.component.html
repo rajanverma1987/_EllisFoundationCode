@@ -160,7 +160,7 @@
             *ngIf="tableData.length > 0 && followup === 1"
           ></th>
         </tr>
-        <tr>
+        <tr class="border-bot">
           <!-- <th style="border-top: transparent">New Incoming Student</th> -->
           <th style="border-top: transparent" colspan="2">School ID</th>
           <th>Last</th>
@@ -243,7 +243,7 @@
             Amount If Not $2k
           </th>
           <!-- <th style="border-top: transparent">Scholarship Amount</th> -->
-          <th style="border-top: transparent; background-color: #faefef">
+          <th style="border-top: transparent; background-color: #bfe3f5">
             More Student Detail
           </th>
           <th
@@ -467,60 +467,49 @@
     <p>Instructions</p>
     <ul>
       <li>
-        Please provide the last date of enrollment and Payment Due dates in the
+        Please provide your Enrollment Deadline and Payment Due dates in the
         fields at the top of the form.
       </li>
-      <li>Please verify and update the Student ID if necessary.</li>
+      <li>Please verify and update the Students' School ID if necessary.</li>
       <li>
         ‘Credit Hours’ and ‘GPA’ columns: Please provide information for the
-        listed semester, only if the student attended your college.
+        listed semester if the student attended your college.
+        <ul>
+          <li>Include transferred hours in cumulative hours reported.</li>
+        </ul>
+      </li>
+
+      <li>
+        Comments Section – Please provide any additional information in this
+        section.
       </li>
       <li>
-        Comments Section – Please note student’s status, such as hold status,
-        graduation status, etc. in this column for each student.
+        ‘Code’ column - Please provide Student status from the dropdown list.
       </li>
-      <li>
-        Enrollment information: Select enrollment status from the dropdown in
-        the ‘Code’ column and enter enrollment hours for the listed semester.
-      </li>
+      <li>Hours - enter enrollment hours.</li>
       <li>
         More identifying information can be found for a student by clicking on
         “More Info” in the Student Detail column.
       </li>
       <li>
         Click header “Download All Releases” to bulk download all listed
-        students’ release authorizations, or Individual student’s releases may
+        students’ release authorizations; or, Individual student’s releases may
         be downloaded by clicking ‘Open Release’.
-      </li>
-      <li>
-        The Scholarship Amount shows each students’ award for this semester (If
-        comments column says ‘Fall only Payment’, the listed amount is for the
-        school/program year).
       </li>
       <li>
         An overview of our Scholarship can be found in the Terms of Award
         column.
       </li>
-
-      <!-- <li>
-        Please update ID# with your school ID if different than listed above.
-      </li>
       <li>
-        If your College operates on a schedule other than Semesters; Please
-        provide Hours and GPA for the most recently completed Term, and
-        enrollment hours for the current or upcoming Term. Please provide in the
-        Comments column any conversion to semester formulas.
+        The Scholarship Amount shows each students’ award for this semester (If
+        comments column says ‘Fall only Payment’, the listed amount is for the
+        school/program year).
+        <ul>
+          If the amount shown is zero, the student may not be eligible for the
+          new semester, please provide all information and we will determine
+          their eligibility.
+        </ul>
       </li>
-      <li>
-        Student Status: Use this field to report the Student's status. Codes: E
-        - Enrolled (record number of Hours), G - Graduated (Sem-YR), T -
-        Transferred (Last semester completed), S - Suspended, H - on Hold, or D
-        - Dropped (Date).
-      </li>
-      <li>
-        Comments Section - Please note such things as Graduation Date if the
-        student will graduate this year.
-      </li> -->
     </ul>
   </div>
 

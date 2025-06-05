@@ -108,7 +108,6 @@ export class HomeComponent implements OnInit {
   startEditing(index: number): void {
     this.editingRowIndex = index;
     this.editingRow = { ...this.tableData[index] };
-    console.log(this.editingRow);
     this.editedRowIds.push(index); // Add the index to the editedRowIds array
   }
 
@@ -165,7 +164,6 @@ export class HomeComponent implements OnInit {
       collegeId: this.College_ID,
     };
 
-    console.log('updatedHeaders', updatedHeaders);
     const token = localStorage.getItem('access_token');
     if (!token) {
       console.error('Error: Authentication token not found');
@@ -233,7 +231,6 @@ export class HomeComponent implements OnInit {
       cells.forEach((cell) => {
         const input = cell.querySelector('input');
         if (input) {
-          console.log(input.value);
           cell.textContent = input.value;
         }
         const textarea = cell.querySelector('textarea');
@@ -252,7 +249,6 @@ export class HomeComponent implements OnInit {
   loadDataFromApi(): void {
     this.dataService.fetchData().subscribe(
       (data: any) => {
-        console.log('Data', data);
         if (
           data &&
           (data.status === 201 ||
@@ -373,7 +369,7 @@ export class HomeComponent implements OnInit {
   openFilesPopup(accessStudentId: number): void {
     this.filesService.getFiles(accessStudentId).subscribe((filePath) => {
       // Check if filePath is undefined or null
-      if (filePath === undefined || filePath === null) {
+      if (filePath === undefined || filePath === null || filePath == '') {
         // Show a popup or alert indicating that there is no release form
         alert('No Release Form Available!');
         return;
@@ -381,7 +377,6 @@ export class HomeComponent implements OnInit {
 
       // Construct the complete URL
       const fileUrl = `https://ellisfoundationapi.infodatixhosting.com//${filePath}`;
-      console.log('path:', filePath);
 
       // Open the file in a new window
       const newWindow = window.open(fileUrl, '_blank');
@@ -406,7 +401,6 @@ export class HomeComponent implements OnInit {
     const headers = {
       Authorization: `${token}`,
     };
-    console.log('apiUrl', apiUrl);
     this.http.get(apiUrl, { headers }).subscribe((data: any) => {
       const dialogRef = this.dialog.open(StudentDetailPopupComponent, {
         data: data,
@@ -426,7 +420,6 @@ export class HomeComponent implements OnInit {
       alert('Authentication token not available!');
       return;
     }
-    console.log('token value:', token);
 
     this.zipFilesService.getFilesWithToken(token).subscribe((filePath: any) => {
       // Check if filePath is undefined or null
@@ -435,10 +428,10 @@ export class HomeComponent implements OnInit {
         alert('No Release Form Available!');
         return;
       }
+      console.log('file data', filePath.data.data);
 
       // Construct the complete URL
       const fileUrl = `https://ellisfoundationapi.infodatixhosting.com//${filePath.data.data}`;
-      console.log('path:', filePath.data.data);
 
       // Open the file in a new window
       const newWindow = window.open(fileUrl, '_blank');
@@ -455,7 +448,6 @@ export class HomeComponent implements OnInit {
   openTermsModal(rowData: any): void {
     this.showModal = true;
     this.selectedRowData = rowData;
-    console.log('selected DAta', rowData);
   }
 
   closeTermsModal() {
