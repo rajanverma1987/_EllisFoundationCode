@@ -428,7 +428,6 @@ export class HomeComponent implements OnInit {
         alert('No Release Form Available!');
         return;
       }
-      console.log('file data', filePath.data.data);
 
       // Construct the complete URL
       const fileUrl = `https://ellisfoundationapi.infodatixhosting.com//${filePath.data.data}`;
@@ -442,6 +441,36 @@ export class HomeComponent implements OnInit {
       }
     });
   }
+  // downloadFilesZip(): void {
+  //   const token = localStorage.getItem('access_token');
+
+  //   if (!token) {
+  //     // Handle the case where the token is not available (e.g., redirect to login)
+  //     alert('Authentication token not available!');
+  //     return;
+  //   }
+  //   console.log('token value:', token);
+
+  //   this.zipFilesService.getFilesWithToken(token).subscribe((filePath: any) => {
+  //     // Check if filePath is undefined or null
+  //     if (!filePath?.data?.data) {
+  //       // Show a popup or alert indicating that there is no release form
+  //       alert('No Release Form Available!');
+  //       return;
+  //     }
+
+  //     // Construct the complete URL
+  //     const fileUrl = `https://ellisfoundationapi.infodatixhosting.com//${filePath.data.data}`;
+
+  //     // Open the file in a new window
+  //     const newWindow = window.open(fileUrl, '_blank');
+
+  //     // Optionally, focus on the new window
+  //     if (newWindow) {
+  //       newWindow.focus();
+  //     }
+  //   });
+  // }
 
   showModal = false;
 
