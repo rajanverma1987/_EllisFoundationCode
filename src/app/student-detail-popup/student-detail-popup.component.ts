@@ -10,7 +10,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
         SSN: {{ maskSSN(studentDetails.data.data.SSN) }}<br />
         Birthdate: {{ formatDate(studentDetails.data.data.BIRTHDATE) }}<br />
         Hometown: {{ studentDetails.data.data.CITY }}<br />
-        Students College : {{ studentDetails.data.data.COLLEGE }}
+        College : {{ studentDetails.data.data.COLLEGE }}
       </p>
     </div>
   `,
