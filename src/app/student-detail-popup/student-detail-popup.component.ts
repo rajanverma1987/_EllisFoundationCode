@@ -9,11 +9,13 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
       <p>
         SSN: {{ maskSSN(studentDetails.data.data.SSN) }}<br />
         Birthdate: {{ formatDate(studentDetails.data.data.BIRTHDATE) }}<br />
-        Hometown: {{ studentDetails.data.data.CITY }}<br />
-        College : {{ studentDetails.data.data.COLLEGE }}
+        Hometown: {{ studentDetails.data.data.CITY }},
+        {{ studentDetails?.data?.data?.STATE }}<br />
+        High School: {{ studentDetails.data.data?.['High School'] }}
       </p>
     </div>
   `,
+
   styles: [
     `
       .popup-container {

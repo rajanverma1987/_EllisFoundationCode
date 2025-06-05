@@ -249,20 +249,21 @@ input[type="number"]::-webkit-inner-spin-button {
   border-radius: 10px !important;
 }
 .table-block1 {
-  height: 59vh;
+  height: 48vh;
   overflow-y: auto;
   padding-inline: 3px;
 }
 
 .notes {
-  height: 17vh;
+  height: 29vh;
   width: 100%;
   text-align: left;
   padding-left: 1rem;
-  padding: 10px;
+  /* padding: 10px; */
   background-color: #8fc6e1;
   overflow-y: auto;
-  margin-bottom: 8rem;
+  /* margin-bottom: 8rem; */
+  line-height: 1rem;
 }
 /* .notes {
   max-height: 40vh;
@@ -273,7 +274,8 @@ input[type="number"]::-webkit-inner-spin-button {
 } */
 .notes p {
   font-weight: bold;
-  margin-bottom: 8px;
+  margin: 0;
+  /* margin-bottom: 8px; */
 }
 .notes::-webkit-scrollbar {
   display: none;
