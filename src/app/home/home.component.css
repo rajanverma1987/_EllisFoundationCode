@@ -212,6 +212,7 @@ input[type="number"]::-webkit-inner-spin-button {
   position: sticky;
   top: 0px;
   z-index: 10;
+
   /* background: white; */
 }
 .sticky-header-table th {
@@ -249,13 +250,13 @@ input[type="number"]::-webkit-inner-spin-button {
   border-radius: 10px !important;
 }
 .table-block1 {
-  height: 48vh;
+  height: 55vh;
   overflow-y: auto;
   padding-inline: 3px;
 }
 
 .notes {
-  height: 29vh;
+  height: 20vh;
   width: 100%;
   text-align: left;
   padding-left: 1rem;
@@ -274,7 +275,7 @@ input[type="number"]::-webkit-inner-spin-button {
 } */
 .notes p {
   font-weight: bold;
-  margin: 0;
+  margin: 10px;
   /* margin-bottom: 8px; */
 }
 .notes::-webkit-scrollbar {
@@ -356,7 +357,7 @@ img {
   background-color: transparent;
 }
 .Moreinfo-button-text {
-  color: #075b85;
+  color: blue;
   display: inline-block;
   position: relative;
   width: 50px;
@@ -470,6 +471,8 @@ input:focus {
 
 .clickable-text {
   cursor: pointer;
+  color: blue;
+  font-size: 10px;
 }
 
 .modal-contents {

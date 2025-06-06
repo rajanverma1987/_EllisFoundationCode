@@ -218,33 +218,104 @@ export class HomeComponent implements OnInit {
   }
   @ViewChild('tableToExport', { static: false }) tableToExport!: ElementRef;
   exportToExcel(): void {
-    // Create a deep copy of the table element
-    const tableClone = this.tableToExport.nativeElement.cloneNode(
-      true
-    ) as HTMLElement;
+    const tableElement: HTMLElement = this.tableToExport.nativeElement;
+    const rows = Array.from(tableElement.querySelectorAll('tr'));
 
-    // Iterate over the rows and extract input value
-    const rows = tableClone.querySelectorAll('tr');
-    rows.forEach((row) => {
-      let cells = row.querySelectorAll('td');
-      if (cells.length === 0) cells = row.querySelectorAll('th');
-      cells.forEach((cell) => {
-        const input = cell.querySelector('input');
-        if (input) {
-          cell.textContent = input.value;
-        }
-        const textarea = cell.querySelector('textarea');
-        if (textarea) {
-          cell.textContent = textarea.value;
-        }
-      });
+    // Headers to exclude (case-insensitive)
+    const headersToRemove = [
+      'more student detail',
+      'click here to download all releases',
+      'terms of award',
+    ];
+
+    // Find the last header row (usually contains the actual column names)
+    let headerRow: HTMLTableRowElement | undefined;
+    for (let i = rows.length - 1; i >= 0; i--) {
+      const row = rows[i];
+      if (row.querySelectorAll('th').length > 0) {
+        headerRow = row;
+        break;
+      }
+    }
+    if (!headerRow) return;
+
+    // Get indexes of headers to remove
+    const indexesToRemove: number[] = [];
+    const headerCells = Array.from(headerRow.children);
+
+    headerCells.forEach((cell, index) => {
+      // Extract all text content, including nested elements, normalize spaces and lowercase
+      const cellText =
+        cell.textContent?.trim().toLowerCase().replace(/\s+/g, ' ') || '';
+      // Check if this header matches any to remove
+      if (headersToRemove.some((h) => cellText.includes(h))) {
+        indexesToRemove.push(index);
+      }
     });
 
-    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(tableClone);
+    // Create new table excluding unwanted columns
+    const newTable = document.createElement('table');
+
+    rows.forEach((row) => {
+      const newRow = document.createElement('tr');
+      const cells = Array.from(row.children);
+
+      cells.forEach((cell, idx) => {
+        if (!indexesToRemove.includes(idx)) {
+          const newCell = cell.cloneNode(true) as HTMLElement;
+
+          // Replace input/textarea values with their current value
+          const input = newCell.querySelector('input');
+          if (input) newCell.textContent = (input as HTMLInputElement).value;
+
+          const textarea = newCell.querySelector('textarea');
+          if (textarea)
+            newCell.textContent = (textarea as HTMLTextAreaElement).value;
+
+          newRow.appendChild(newCell);
+        }
+      });
+
+      newTable.appendChild(newRow);
+    });
+
+    // Export to Excel using XLSX
+    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(newTable);
     const wb: XLSX.WorkBook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
-    XLSX.writeFile(wb, 'ExportedData.xlsx');
+    XLSX.writeFile(wb, 'FilteredExport.xlsx');
   }
+
+  // exportToExcel(): void {
+  //   // Create a deep copy of the table element
+  //   console.log('table to export', this.tableToExport);
+  //   const tableClone = this.tableToExport.nativeElement.cloneNode(
+  //     true
+  //   ) as HTMLElement;
+
+  //   // Iterate over the rows and extract input value
+  //   const rows = tableClone.querySelectorAll('tr');
+  //   rows.forEach((row) => {
+  //     let cells = row.querySelectorAll('td');
+  //     if (cells.length === 0) cells = row.querySelectorAll('th');
+  //     cells.forEach((cell) => {
+  //       const input = cell.querySelector('input');
+  //       if (input) {
+  //         cell.textContent = input.value;
+  //       }
+  //       const textarea = cell.querySelector('textarea');
+  //       if (textarea) {
+  //         cell.textContent = textarea.value;
+  //       }
+  //     });
+  //   });
+  //   console.log('table Clone', tableClone);
+
+  //   const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(tableClone);
+  //   const wb: XLSX.WorkBook = XLSX.utils.book_new();
+  //   XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+  //   XLSX.writeFile(wb, 'ExportedData.xlsx');
+  // }
 
   loadDataFromApi(): void {
     this.dataService.fetchData().subscribe(
